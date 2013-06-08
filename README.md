@@ -23,8 +23,8 @@
     地理编码
     逆地理编码
     
-4.相关地址链接：
+4.相关链接：
 
-    [http://api.amap.com/Win8/guide]
+  > <http://api.amap.com/Win8/guide>
 
 
