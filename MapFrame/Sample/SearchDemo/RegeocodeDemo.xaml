@@ -1,0 +1,66 @@
+﻿<UserControl
+    x:Class="Win8.Map.Demo.RegeocodeDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MapFrame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" FontFamily="Global User Interface">
+
+    <Grid x:Name="searchContent">
+        <Grid Canvas.ZIndex="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*" />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="SearchTextGrid" Opacity="0.8" Background="#FF323232" 
+
+Grid.Column="1" RenderTransformOrigin="0.497,0.465" Margin="24,30,4,300">
+                <StackPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="163*"/>
+                            <ColumnDefinition Width="115*"/>
+                            <ColumnDefinition Width="19*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="经纬度坐标:"  TextAlignment="Left" 
+
+Foreground="#FFFFFEFE"  FontWeight="Bold" FontSize="16" Margin="10,19,49,27" />
+                        <TextBox x:Name="centerLng" Background="White" Foreground="Black" 
+
+ Height="28" Margin="15,50,43,-1" FontSize="16" Text="116.40546798706054" 
+
+Grid.ColumnSpan="2" />
+                        <TextBlock x:Name="LngName" Foreground="White"  Height="28" 
+
+Margin="69,58,-9,-5" FontSize="12" Text="经度" Grid.Column="1" Grid.ColumnSpan="2" 
+
+HorizontalAlignment="Left" Width="66"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130*"/>
+                            <ColumnDefinition Width="27*"/>
+                            <ColumnDefinition Width="140*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="centerLat" Background="White" Foreground="Black" 
+
+ Height="28" Margin="15,13,60,29" FontSize="16" Text="39.90776109736608" 
+
+Grid.ColumnSpan="3"/>
+                        <TextBlock x:Name="LatName" Foreground="White"  Height="28" 
+
+Margin="76,23,-3,23" FontSize="12" Text="纬度" Grid.Column="2"/>
+                    </Grid>
+
+                    <Button  Background="#FF818181" Foreground="White" 
+
+BorderBrush="White" Content="地理编码"  Width="99" Height="35" Click="PoiSearchClick" 
+
+Margin="150,-10,0,0" RenderTransformOrigin="0.479,0.05" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

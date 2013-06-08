@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="Win8.Map.Demo.Geocode"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MapFrame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" FontFamily="Global User Interface">
+
+    <Grid x:Name="searchContent">
+        <Grid Canvas.ZIndex="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*" />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="SearchTextGrid" Opacity="0.8" Background="#FF323232" Margin="61,30,4,358" Grid.Column="1" RenderTransformOrigin="0.497,0.465" Canvas.ZIndex="100">
+                <StackPanel>
+                    <Grid>
+                        <TextBlock x:Name="cityInput"  Foreground="White" FontSize="16" Margin="11,23,12,51">
+                        	<Run Text="北京市朝阳区"/>
+                        	<LineBreak/>
+                        	<Run Text="望京阜通东大街方恒国际中心"/>
+                        </TextBlock>
+                    </Grid>
+                    <Button  Background="#FF818181" Foreground="White" BorderBrush="White" Content="地理编码"  Width="99" Height="41" Click="PoiSearchClick" Margin="133,-30,0,0" RenderTransformOrigin="0.479,0.05" />
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,80 @@
+﻿<Page
+    x:Class="MapFrame.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MapFrame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Page.Resources>
+
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">高德地图 Win8 API 地图显示示例</x:String>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=MapStarter}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="TitleText" Text="{StaticResource AppName}" VerticalAlignment="Center" FontSize="48" Margin="110,56,557,26" Grid.ColumnSpan="2"/>
+        </Grid>
+        <!-- Title -->
+      
+
+        <!-- Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="177*" MinWidth="320" />
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="506*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Left column -->
+            <!-- The default value of Grid.Column is 0, so we do not need to set it   
+                 to make the ListView show up in the first column. -->
+            <ListView x:Name="ItemListView"  
+                      ItemsSource="{Binding}"
+                      Margin="60,0,21,105" SelectionChanged="ItemListView_SelectionChanged" FontFamily="Global User Interface"
+                     >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Height="55">
+                            <TextBlock Text="{Binding Title}"  
+                           FontSize="24" Margin="5,0,0,0" TextWrapping="Wrap" />
+                           
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+            <!-- Right column -->
+            <!-- We use a Grid here instead of a StackPanel so that the WebView sizes correctly. -->
+            <Grid DataContext="{Binding ElementName=ItemListView, Path=SelectedItem}"
+                  Grid.Column="3" Margin="15,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="PostTitleText" Text="{Binding Title}" FontSize="24"/>
+                <Grid x:Name="mapsample" Grid.Row="1" Margin="0,0,60,60">
+                </Grid>
+           
+            </Grid>
+            <Image x:Name="inc_Logo" Margin="60,566,217,38" Source="autonavi.png"/>
+
+            <TextBlock HorizontalAlignment="Left" Margin="60,601,0,-9" TextWrapping="Wrap" Text="Copyright © 2012 AutoNavi . All rights reserved" Width="259" FontSize="12"/>
+         </Grid>
+    </Grid>
+
+</Page>
