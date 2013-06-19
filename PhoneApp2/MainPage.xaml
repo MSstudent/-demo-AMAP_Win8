@@ -1,0 +1,161 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="WindowsPhoneDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+
+            <TextBlock x:Name="ApplicationTitle"  Text="高德地图 API for Windows Phone 8 SDK V2.0 示例" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle"  FontSize="32" Text="地图示例" Margin="165,20,165,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,-17,12,0"  >
+            <ScrollViewer x:Name="scrolls" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="Auto">
+                <ScrollViewer.Content>
+                    <StackPanel  Orientation="Horizontal" >
+                        <Grid Height="Auto" Name="grid1" Width="457">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65" />
+                                <ColumnDefinition Width="417" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="Auto"  />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Left" Height="29" Margin="1,10,0,0" TextWrapping="Wrap" Text="地图展示" VerticalAlignment="Top" Width="145"   Grid.Row="0" Grid.ColumnSpan="2" Canvas.ZIndex="10" Opacity="0.8"/>
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="1"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/DisplayMap.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="1">
+                                <TextBlock  Style="{StaticResource TextBlockMainStyle}" Text="展示地图"/>
+                            </HyperlinkButton>
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="2"></Image>
+
+                            <HyperlinkButton NavigateUri="/Samples/MapType.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="2">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="地图类型" />
+                            </HyperlinkButton>
+
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="3"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/Traffic.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="3">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="实时交通" />
+                            </HyperlinkButton>
+
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="4"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/MyLocation.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="4">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="定位功能" />
+                            </HyperlinkButton>
+
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="5"  ></Image>
+                            <HyperlinkButton NavigateUri="/Samples/Gestures.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="5">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="手势操作"/>
+                            </HyperlinkButton>
+                            <TextBlock HorizontalAlignment="Left" Height="33" Margin="0,10,0,0" TextWrapping="Wrap" Text="地图覆盖物" VerticalAlignment="Top" Width="145"   Grid.Row="6" Grid.ColumnSpan="2" Canvas.ZIndex="10" Opacity="0.8"/>
+
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="7"></Image>
+
+                            <HyperlinkButton NavigateUri="/Samples/AddOverlays.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="7">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="添加覆盖物" />
+                            </HyperlinkButton>
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="8"></Image>
+
+                            <HyperlinkButton NavigateUri="/Samples/CustomerInfoWindow.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="8">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="自定义信息窗体" />
+                            </HyperlinkButton>
+                            <TextBlock HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" Text="Camera 功能" Width="188"   Grid.Row="9" Grid.ColumnSpan="2" Canvas.ZIndex="10" Opacity="0.8"/>
+
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="10"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/CameralIntroduce.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="10">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="Camera 功能介绍" />
+                            </HyperlinkButton>
+                            <ScrollBar Grid.Column="1" HorizontalAlignment="Left" Margin="173,64,0,0" Grid.Row="5"/>
+                            <TextBlock HorizontalAlignment="Left" Height="33" Margin="0,10,0,0" TextWrapping="Wrap" Text="其他功能介绍" VerticalAlignment="Top" Width="145"   Grid.Row="11" Grid.ColumnSpan="2" Canvas.ZIndex="10" Opacity="0.8"/>
+
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="12"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/MapLayerPage.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="12">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="地图图层" />
+                            </HyperlinkButton>
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="13"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/ZIndexPage.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="13">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="绘制顺序" />
+                            </HyperlinkButton>
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="14"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/MapCirclePage.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="14">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="圆" />
+                            </HyperlinkButton>
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="15"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/MapMarkerPage.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="15">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="标注点" />
+                            </HyperlinkButton>
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="16"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/MapPolygonPage.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="16">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="多边形" />
+                            </HyperlinkButton>
+                            <Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="17"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/MapPolylinePage.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="17">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="线" />
+                            </HyperlinkButton>
+                            <!--<Image Style="{StaticResource ImageMainStyle}"  Grid.Column="0" Grid.Row="18"></Image>
+                            <HyperlinkButton NavigateUri="/Samples/MapPage.xaml"
+                                         Style="{StaticResource HyperlinkEmptyStyle}" Grid.Column="1" Grid.Row="18">
+                                <TextBlock Style="{StaticResource TextBlockMainStyle}" Text="MapPage" />
+                            </HyperlinkButton>-->
+
+
+
+
+
+
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer.Content>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>

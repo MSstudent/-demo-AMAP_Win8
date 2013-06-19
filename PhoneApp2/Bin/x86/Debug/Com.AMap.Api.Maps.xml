@@ -1,0 +1,1014 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WindowPhone8DOC</name>
+    </assembly>
+    <members>
+        <member name="T:Com.AMap.Api.Maps.AMap">
+            <summary>
+            地图容器类。它是所有和地图相关操作的主类，通过创建一个 AMap 对象并调用它的相应方法可以显示地图，实现地图基本的功能。
+            </summary>
+            <remarks>地图对象必须在主线程创建， 在其它线程创建会出现异常</remarks>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.#ctor">
+            <summary>
+            创建地图对象
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.#ctor(Com.AMap.Api.Maps.AMapOptions)">
+            <summary>
+            使用AMapOptions创建地图对象
+            </summary>
+            <param name="option">地图参数，包括比例尺、地图视窗定义和手势</param>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.DeleteAllCache">
+            <summary>
+            删除所有地图缓存
+            </summary>
+            <remarks>在地图正在使用缓冲的情况下，不建议使用，会出现数据加载异常；主要用在没有地图界面时发现地图占用磁盘比较大，可以调用此方法</remarks>
+            <returns>返回是否成功删除地图缓存数据</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.AddAMapLayer(Com.AMap.Api.Maps.AMapLayer)">
+            <summary>
+            添加地图图层
+            </summary>
+            <param name="layer">地图图层，包含地图元素点、线、面和圆</param>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.RemoveAMapLayer(Com.AMap.Api.Maps.AMapLayer)">
+            <summary>
+            移除指定的地图图层
+            </summary>
+            <param name="layer">要移除的地图图层，包含移除地图上的点、线、面和圆</param>
+            <returns>返回是否成功移除地图图层</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.MoveCamera(Com.AMap.Api.Maps.CameraUpdate)">
+            <summary>
+            根据CameraUpdate指定的方式（放大、缩小、平移等）重新设置地图视窗
+            </summary>
+            <param name="update">地图视窗变化类</param>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.AddPolyline(Com.AMap.Api.Maps.Model.AMapPolylineOptions)">
+            <summary>
+            根据AMapPolylineOptions指定的折线参数添加一条折线到地图上
+            </summary>
+            <param name="options">折线参数选项类</param>
+            <returns>返回折线对象类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.AddCircle(Com.AMap.Api.Maps.Model.AMapCircleOptions)">
+            <summary>
+            根据AMapCircleOptions指定的圆参数添加一个圆到地图上
+            </summary>
+            <param name="options">圆参数选项类</param>
+            <returns>返回圆对象类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.AddPolygon(Com.AMap.Api.Maps.Model.AMapPolygonOptions)">
+            <summary>
+            根据AMapPolygonOptions指定的圆参数添加一个圆到地图上
+            </summary>
+            <param name="options">多边形参数选项类</param>
+            <returns>返回多边形对象类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.AddMarker(Com.AMap.Api.Maps.Model.AMapMarkerOptions)">
+            <summary>
+            根据AMapMarkerOptions指定的标注参数添加一个标注到地图上
+            </summary>
+            <param name="options">标注参数选项类</param>
+            <returns>返回标注对象类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.Clear">
+            <summary>
+            删除所有的覆盖物,点、线、面、圆和图层（AMaplayer）
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.GetUiSettings">
+            <summary>
+            获取当前地图交互状态对象，包括是否可以旋转、平移、倾斜、放大等
+            </summary>
+            <returns>返回UiSettings对象</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.GetProjection">
+            <summary>
+            获取AMapProjection对象，该对象用于做屏幕坐标和地图坐标之间的转换
+            </summary>
+            <returns>返回AMapProjection对象</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.IsInfoWindowShown">
+             <summary>
+             判断当前地图上有没有显示的InfoWindow，包括地图和marker的InfoWindow
+             </summary>
+            <returns>返回当前地图是否显示InfoWIndow</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.HideInfoWindow">
+            <summary>
+            隐藏地图上的InfoWindow
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.ShowInfoWindow(Com.AMap.Api.Maps.Model.LatLng,System.Windows.FrameworkElement)">
+            <summary>
+            在指定位置显示InfoWindow
+            </summary>
+            <param name="center">指定位置坐标</param>
+            <param name="tip">InfoWindow</param>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMap.ShowInfoWindow(Com.AMap.Api.Maps.Model.LatLng,System.Windows.FrameworkElement,System.Windows.Point)">
+            <summary>
+            在指定位置，指定锚点显示InfoWindow
+            </summary>
+            <param name="center">指定位置坐标</param>
+            <param name="tip">InfoWindow</param>
+            <param name="anchor">锚点位置</param>
+        </member>
+        <member name="E:Com.AMap.Api.Maps.AMap.CameraChangeListener">
+            <summary>
+            地图视窗(CameraPosition)发生变化后将会回调该函数
+            </summary>
+            <returns>返回视窗变化后的参数对象AMapEventArgs</returns>
+            <remarks>回调在地图视窗变化时不会立即执行，而是在地图视窗动画完成后执行</remarks>
+        </member>
+        <member name="E:Com.AMap.Api.Maps.AMap.MarkerClickListener">
+            <summary>
+            点击Marker图标将会回调该函数
+            </summary>
+            <returns>返回Marker图标点击后的参数对象AMapEventArgs</returns>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMap.Zoom">
+            <summary>
+            获取或者设置地图比例尺，比例尺值范围：4-20
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMap.Bearing">
+            <summary>
+            获取或者设置地图旋转角度,以角度为单位，正北方向到地图方向逆时针旋转的角度，范围为：[0.f, 360.f] 
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMap.Tile">
+            <summary>
+            获取或者设置地图倾角,范围为：范围为[0.f, 45.f] 
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMap.Center">
+            <summary>
+            获取或者设置地图中心点坐标
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMap.MapType">
+            <summary>
+            获取或者设置地图类型，值为： Road或Aerial
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMap.TrafficEnabled">
+            <summary>
+            获取或者设置实时交通信息图层是否显示
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.AMap.AMapType">
+            <summary>
+            地图类型，包括标准地图Road和卫星地图Aerial
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.AMapConfig">
+            <summary>
+            地图配置类
+            </summary>
+        </member>
+        <member name="F:Com.AMap.Api.Maps.AMapConfig.Key">
+            <summary>
+            设置用户key
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.AMapEventArgs">
+            <summary>
+            地图回调函数返回当前状态类
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapEventArgs.GestureEventArgs">
+            <summary>
+            获取交互对象类
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapEventArgs.CameraPosition">
+            <summary>
+            获取当前地图视窗(CameraPosition)类
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.AMapGeolocator">
+            <summary>
+            定义了定位类，该类封装了 Geolocator 
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapGeolocator.#ctor">
+            <summary>
+            创建定位类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapGeolocator.GetGeopositionAsync">
+            <summary>
+            获取用户位置
+            </summary>
+            <returns>返回当前位置对象</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapGeolocator.GetGeopositionAsync(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            获取用户位置
+            </summary>
+            <param name="maximumAge">已缓存位置数据的最大可接受的年龄 </param>
+            <param name="timeout"> TimeSpan 是指以 100 毫微秒为单位表示的时间段 </param>
+            <returns>返回当前位置对象</returns>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapGeolocator.DesiredAccuracy">
+            <summary>
+            获取或者设置定位精度模式， 模式非为Default 和High
+            </summary>
+            <remarks>当设置为High值比较耗电</remarks>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapGeolocator.LocationStatus">
+            <summary>
+            获取定位状态PositionStatus， PositionStatus分为：
+            0 : 提供位置数据
+            1 : 位置提供程序正在初始化。如果 GPS 是位置数据源，并且视图中的 GPS 接收器没有所需的附属数目来获取准确的位置，则此为该状态。
+            2 : 所有位置提供程序均未提供位置数据
+            3 : 位置提供程序已禁用
+            4 : 检索位置的操作尚未初始化
+            5 : Windows 传感器和位置平台在此版本的 Windows 中不可用
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapGeolocator.MovementThreshold">
+            <summary>
+            获取并设置相对于来自最后的 PositionChanged 事件的坐标的移动距离（以米为单位），Geolocator 需要该移动距离来引发 PositionChanged 事件
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapGeolocator.ReportInterval">
+            <summary>
+            在位置更新之间请求的最小时间间隔（以毫秒为单位）。如果您的应用程序很少需要更新，则设置此值，以便位置提供程序可通过仅在需要时计算位置来节省电源
+            </summary>
+            <returns> </returns>
+        </member>
+        <member name="E:Com.AMap.Api.Maps.AMapGeolocator.PositionChanged">
+            <summary>
+            在更新位置时引发
+            </summary>
+        </member>
+        <member name="E:Com.AMap.Api.Maps.AMapGeolocator.StatusChanged">
+            <summary>
+            在 Geolocator 提供更新位置的功能发生更改时引发
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.AMapLayer">
+            <summary>
+            定义了地图图层类，图层中可以添加多个点、线、面和圆对象
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapLayer.GetParent(System.Windows.UIElement)">
+            <summary>
+            获取给定对象的Parent附加属性的值。
+            </summary>
+            <param name="element">从中读取属性值的对象。</param>
+            <returns>指定对象的Parent值。</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapLayer.#ctor">
+            <summary>
+            创建地图图层对象
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapLayer.AddPolyline(Com.AMap.Api.Maps.Model.AMapPolylineOptions)">
+            <summary>
+            根据AMapPolylineOptions指定的折线参数添加一条折线到地图图层(AMapLayer)上
+            </summary>
+            <param name="options">折线参数选项类</param>
+            <returns>返回折线对象类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapLayer.AddCircle(Com.AMap.Api.Maps.Model.AMapCircleOptions)">
+            <summary>
+            根据AMapCircleOptions指定的圆参数添加一个圆到地图图层(AMapLayer)上
+            </summary>
+            <param name="options">圆参数选项类</param>
+            <returns>返回圆对象类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapLayer.AddPolygon(Com.AMap.Api.Maps.Model.AMapPolygonOptions)">
+            <summary>
+            根据AMapPolygonOptions指定的圆参数添加一个圆到地图图层(AMapLayer)上
+            </summary>
+            <param name="options">多边形参数选项类</param>
+            <returns>返回多边形对象类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapLayer.AddMarker(Com.AMap.Api.Maps.Model.AMapMarkerOptions)">
+            <summary>
+            根据AMapMarkerOptions指定的标注参数添加一个标注到地图图层(AMapLayer)上
+            </summary>
+            <param name="options">标注参数选项类</param>
+            <returns>返回标注对象类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapLayer.Clear">
+            <summary>
+            删除该图层上所有的覆盖物,点、线、面、圆
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapLayer.ZIndex">
+            <summary>
+            获取或者设置Overlay的绘制顺序，Overlay包括：圆、多边形、折线； 如果该值大， 则绘制到上层， 如果Ovlerlay该值相同，则按照绘制先后顺序， 默认为 0
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.AMapOptions">
+            <summary>
+            地图选项类
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapOptions.MapType">
+            <summary>
+            获取或者设置地图类型，值为： Road或Aerial
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapOptions.Camera">
+            <summary>
+            获取或者地图视窗(CameraPosition)
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapOptions.ZoomControlsEnabled">
+            <summary>
+            获取或者设置是否能够显示缩放控件
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapOptions.ScrollGesturesEnabled">
+            <summary>
+            获取或者设置是否能够移动地图
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapOptions.ZoomGesturesEnabled">
+            <summary>
+            获取或者设置是否能够缩放地图
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapOptions.TiltGesturesEnabled">
+            <summary>
+            获取或者设置是否能够倾斜地图
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapOptions.RotateGesturesEnabled">
+            <summary>
+            获取或者设置是否能够旋转地图
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.AMapPositionChangedEventArgs">
+            <summary>
+            位置对象
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapPositionChangedEventArgs.PositionChangedEventArgs">
+            <summary>
+            获取Windows Phone 8的位置参数
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapPositionChangedEventArgs.LngLat">
+            <summary>
+            获取AMap地图匹配的坐标
+            </summary>
+            <returns>位置对象LngLat</returns>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.AMapPositionChangedEventArgs.Accuracy">
+            <summary>
+            获取定位精度，单位为：米
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.AMapProjection">
+            <summary>
+            定义了坐标转换类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapProjection.FromScreenLocation(System.Windows.Point)">
+            <summary>
+            将屏幕坐标转换成经纬度坐标
+            </summary>
+            <param name="paramPoint">屏幕坐标点</param>
+            <returns>经纬度点LatLng</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.AMapProjection.ToScreenLocation(Com.AMap.Api.Maps.Model.LatLng)">
+            <summary>
+            将经纬度坐标转换屏幕坐标
+            </summary>
+            <param name="paramLatLng">经纬度坐标</param>
+            <returns>屏幕坐标，当该点不在当前屏幕上，返回空值</returns>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.CameraUpdate">
+            <summary>
+            定义了地图视窗变化类，该类将作为MoveCamera的参数；可以通过CameraUpdateFactory工厂类来创建CameraUpdate
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.CameraUpdateFactory">
+            <summary>
+            创建CameraUpdate对象的工厂类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.ZoomIn">
+            <summary>
+            返回单倍放大后的CameraUpdate对象，Zoom值加1
+            </summary>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.ZoomOut">
+            <summary>
+            返回单倍缩小后的CameraUpdate对象，Zoom值减1
+            </summary>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.ScrollBy(System.Single,System.Single)">
+            <summary>
+            返回水平平移xPixel像素 和垂直平移yPixel像素后的CameraUpdate对象；
+            如果 xPixel = 5 and yPixel = 0, 地图将会右移5个像素；
+            如果 xPixel = 0 and yPixel = 5，地图将会上移5个像素
+            </summary>
+            <param name="xPixel">水平方向移动像素值,可为负值</param>
+            <param name="yPixel">垂直方向移动像素值,可为负值</param>
+            <remarks>地图移动和地图方向是相对的，例如bearing=90，即东为上，那么右移就是向南移动</remarks>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.ZoomBy(System.Single)">
+            <summary>
+            以当前比例尺作为基准，zoomByamount作为差值缩放地图
+            </summary>
+            <param name="zoomByamount">比例尺差值，正值为放大；负值为缩小</param>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.ZoomBy(System.Single,System.Nullable{System.Windows.Point})">
+            <summary>
+            以地图上的某点进行地图缩放，而非中心点； 如果focus为中心点，等同于ZoomBy(float zoomByamount)方法
+            </summary>
+            <param name="amount">比例尺差值，正值为放大；负值为缩小</param>
+            <param name="focus">屏幕上的某点</param>
+            <returns>返回缩放后的地图， 放大后focus点对应的经纬度坐标和放大前focus对应的经纬度坐标是相同的</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.ZoomTo(System.Single)">
+            <summary>
+            缩放地图到指定比例尺
+            </summary>
+            <param name="zoom">比例尺， 值为： 4-20</param>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.NewCameraPosition(Com.AMap.Api.Maps.Model.CameraPosition)">
+            <summary>
+            根据地图视窗对象(CameraPosition)获取CameraUpdate对象
+            </summary>
+            <param name="cameraPosition">地图视窗参数类</param>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.NewLatLng(Com.AMap.Api.Maps.Model.LatLng)">
+            <summary>
+            以latLng作为中心点获取CameraUpdate对象
+            </summary>
+            <param name="latLng">中心点latLng</param>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.NewLatLngZoom(Com.AMap.Api.Maps.Model.LatLng,System.Single)">
+            <summary>
+            使用latLng作为中心点，zoom做为比例尺获取CameraUpdate对象
+            </summary>
+            <param name="latLng">中心点latLng</param>
+            <param name="zoom">比例尺</param>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.CameraUpdateFactory.NewCameraPosition(Com.AMap.Api.Maps.Model.LatLng,System.Single,System.Single,System.Single)">
+            <summary>
+            使用中心点、比例尺、旋转角度和倾获取CameraUpdate对象
+            </summary>
+            <param name="latLng">中心点latLng</param>
+            <param name="zoom">比例尺</param>
+            <param name="bearing">旋转角度，逆时针旋转，取值为：[0.f, 360.f] </param>
+            <param name="tilt">倾角，取值为：[0.f, 45.f] </param>
+            <returns>返回地图视窗更新参数类，用于传递给MoveCarmera作为参数</returns>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.AMapCircle">
+            <summary>
+            定义了在地图上绘制圆形的类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapCircle.GetId">
+            <summary>
+            返回该圆形的唯一ID
+            </summary>
+            <returns>返回圆ID值字符串</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapCircle.Destroy">
+            <summary>
+            将该圆形从地图上删除，并且销毁该圆形
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapCircle.Equals(System.Object)">
+            <summary>
+            判断该圆是否和参数所指定的对象相同
+            </summary>
+            <param name="obj">比较对象</param>
+            <returns>返回是否相等的bool值</returns>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircle.Radius">
+            <summary>
+            获取或者设置圆的半径，单位为：米， 值>=0
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircle.Center">
+            <summary>
+            获取或者设置圆圆心，值为LatLng：纬度经度对象
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircle.StrokeWidth">
+            <summary>
+            获取或者设置绘制圆的边框宽度
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircle.StrokeColor">
+            <summary>
+            获取或者设置绘制圆的边框颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircle.FillColor">
+            <summary>
+            获取或者设置绘制圆的填充颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircle.ZIndex">
+            <summary>
+            获取或者设置Overlay的绘制顺序，Overlay包括：圆、多边形、折线； 如果该值大， 则绘制到上层， 如果Ovlerlay该值相同，则按照绘制先后顺序， 默认为 0
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircle.Visible">
+            <summary>
+            获取或者设置圆是否绘制到地图上
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.AMapCircleOptions">
+            <summary>
+            圆形选项类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapCircleOptions.#ctor">
+            <summary>
+            创建圆形选项类
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircleOptions.Radius">
+            <summary>
+            获取或者设置圆的半径，单位为：米， 值>=0
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircleOptions.Center">
+            <summary>
+            获取或者设置圆圆心，值为LatLng：纬度经度对象
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircleOptions.StrokeWidth">
+            <summary>
+            获取或者设置绘制圆的边框宽度
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircleOptions.StrokeColor">
+            <summary>
+            获取或者设置绘制圆的边框颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircleOptions.FillColor">
+            <summary>
+            获取或者设置绘制圆的填充颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircleOptions.ZIndex">
+            <summary>
+            获取或者设置Overlay的绘制顺序，Overlay包括：圆、多边形、折线； 如果该值大， 则绘制到上层， 如果Ovlerlay该值相同，则按照绘制先后顺序， 默认为 0
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapCircleOptions.Visible">
+            <summary>
+            获取或者设置圆是否绘制到地图上
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.AMapMarker">
+            <summary>
+            定义了用于绘制标注的类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapMarker.ShowInfoWindow(System.Windows.FrameworkElement)">
+            <summary>
+            显示当前marker 的信息窗口。
+            </summary>
+            <param name="infoWindow">气泡窗口</param>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapMarker.ShowInfoWindow(System.Windows.FrameworkElement,System.Windows.Point)">
+            <summary>
+            显示当前marker 的信息窗口。
+            </summary>
+            <param name="infoWindow">气泡窗口</param>
+            <param name="anchor">锚点</param>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapMarker.HideInfoWindow">
+            <summary>
+            隐藏marker 的信息窗口。如果marker 本身是不可以见的，此方法将不起任何作用。
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapMarker.IsInfoWindowShown">
+            <summary>
+            如果marker 的信息窗口显示，返回true，否则返回false。此方法返回值时不会参考这个信息窗口是否在当前屏幕上真的可见。
+            </summary>
+            <returns>返回marker 是否可见。</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapMarker.GetId">
+            <summary>
+            返回该标注的唯一ID
+            </summary>
+            <returns>返回标注ID值字符串</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapMarker.Destroy">
+            <summary>
+            将该标注从地图上删除，并且销毁该标注
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapMarker.Equals(System.Object)">
+            <summary>
+            判断该标注是否和参数所指定的对象相同
+            </summary>
+            <param name="obj">比较对象</param>
+            <returns>返回是否相等的bool值</returns>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarker.ZIndex">
+            <summary>
+            获取或设置该Marker的显示顺序
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarker.Position">
+            <summary>
+            获取或者设置标注在地图上的位置， 可以通过修改此值改变标注在地图上的位置
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarker.Title">
+            <summary>
+            获取或者设置用于显示在InfoWindow的标题， 可以通过修改此值改变显示在InfoWindow的标题
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarker.Snippet">
+            <summary>
+            获取或者设置用于显示在InfoWindow的子标题， 可以通过修改此值改变显示在InfoWindow的子标题
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarker.Visible">
+            <summary>
+            获取或者设置标注是否绘制到地图上。如果当前标注的信息窗口处于显示状态，设置marker的可见属性为false 时，信息窗口也会同时为不可见。
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.AMapMarkerOptions">
+            <summary>
+            标注选项类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapMarkerOptions.#ctor">
+            <summary>
+            创建标注选项类
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarkerOptions.Position">
+            <summary>
+            获取或者设置标注在地图上的位置， 可以通过修改此值改变标注在地图上的位置
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarkerOptions.Title">
+            <summary>
+            获取或者设置用于显示在InfoWindow的标题， 可以通过修改此值改变显示在InfoWindow的标题
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarkerOptions.Snippet">
+            <summary>
+            获取或者设置用于显示在InfoWindow的子标题， 可以通过修改此值改变显示在InfoWindow的子标题
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarkerOptions.Visible">
+            <summary>
+            获取或者设置标注是否绘制到地图上。如果当前标注的信息窗口处于显示状态，设置marker的可见属性为false 时，信息窗口也会同时为不可见。
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarkerOptions.IconUri">
+            <summary>
+            更改（获取）默认设置的 IconURL
+            </summary>
+            <remarks>
+            可以是本地资源 也可以是远程图片 不能是GIF图
+            </remarks>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapMarkerOptions.Anchor">
+            <summary>
+            更改（获取）默认设置的 Anchor(锚点)  (0,0)->(1,1) 定义marker 图标的锚点。锚点是marker 图标接触地图平面的点。图标的左顶点为（0,0）点，右底点为（1,1）点。
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.AMapPolygon">
+            <summary>
+            定义了在地图上绘制多边形的类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapPolygon.GetId">
+            <summary>
+            返回该多边形的唯一ID
+            </summary>
+            <returns>返回多边形ID值字符串</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapPolygon.Destroy">
+            <summary>
+            将该多边形从地图上删除，并且销毁该多边形
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapPolygon.Equals(System.Object)">
+            <summary>
+            判断该多边形是否和参数所指定的对象相同
+            </summary>
+             <param name="obj">比较对象</param>
+            <returns>返回是否相等的bool值</returns>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygon.Points">
+            <summary>
+            获取或者设置用于绘制多边形顶点的数组，多边形的起点和终点不要求闭合，在绘制多边形时会自动闭合；
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygon.StrokeWidth">
+            <summary>
+            获取或者设置绘制圆的边框宽度
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygon.StrokeColor">
+            <summary>
+            获取或者设置绘制多边形的边框颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygon.FillColor">
+            <summary>
+            获取或者设置绘制多边形的填充颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygon.ZIndex">
+            <summary>
+            获取或者设置Overlay的绘制顺序，Overlay包括：圆、多边形、折线； 如果该值大， 则绘制到上层， 如果Ovlerlay该值相同，则按照绘制先后顺序， 默认为 0
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygon.Visible">
+            <summary>
+            获取或者设置多边形是否绘制到地图上
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.AMapPolygonOptions">
+            <summary>
+            多边形选项类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapPolygonOptions.#ctor">
+            <summary>
+            创建多边形选项类
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygonOptions.Points">
+            <summary>
+            获取或者设置用于绘制多边形顶点的数组，多边形的起点和终点不要求闭合，在绘制多边形时会自动闭合；
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygonOptions.StrokeWidth">
+            <summary>
+            获取或者设置绘制圆的边框宽度
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygonOptions.StrokeColor">
+            <summary>
+            获取或者设置绘制多边形的边框颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygonOptions.FillColor">
+            <summary>
+            获取或者设置绘制多边形的填充颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygonOptions.ZIndex">
+            <summary>
+            获取或者设置Overlay的绘制顺序，Overlay包括：圆、多边形、折线； 如果该值大， 则绘制到上层， 如果Ovlerlay该值相同，则按照绘制先后顺序， 默认为 0
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolygonOptions.Visible">
+            <summary>
+            获取或者设置多边形是否绘制到地图上
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.AMapPolyline">
+            <summary>
+            定义了在地图上绘制折线的类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapPolyline.GetId">
+            <summary>
+            返回该折线的唯一ID
+            </summary>
+            <returns>返回折线ID值的字符串</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapPolyline.Destroy">
+            <summary>
+            将该折线从地图上删除，并且销毁该折线
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapPolyline.Equals(System.Object)">
+            <summary>
+            判断该折线是否和参数所指定的对象相同
+            </summary>
+            <param name="obj">比较对象</param>
+            <returns>返回是否相等的bool值</returns>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolyline.Points">
+            <summary>
+            获取或者设置用于绘制折线顶点的数组，折线的起点和终点不闭合；如果要绘制闭合的折线，需要将起点和终点设置为同一个点
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolyline.StrokeWidth">
+            <summary>
+            获取或者设置绘制折线的边框宽度
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolyline.StrokeColor">
+            <summary>
+            获取或者设置绘制折线的边框颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolyline.FillColor">
+            <summary>
+            获取或者设置绘制折线的填充颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolyline.ZIndex">
+            <summary>
+            获取或者设置Overlay的绘制顺序，Overlay包括：圆、多边形、折线； 如果该值大， 则绘制到上层， 如果Ovlerlay该值相同，则按照绘制先后顺序， 默认为 0
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolyline.Visible">
+            <summary>
+            获取或者设置折线是否绘制到地图上
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.AMapPolylineOptions">
+            <summary>
+            折线选项类
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.AMapPolylineOptions.#ctor">
+            <summary>
+            创建折线选项类
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolylineOptions.Points">
+            <summary>
+            获取或者设置用于绘制折线顶点的数组，折线的起点和终点不闭合；如果要绘制闭合的折线，需要将起点和终点设置为同一个点
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolylineOptions.StrokeWidth">
+            <summary>
+            获取或者设置绘制折线的边框宽度
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolylineOptions.StrokeColor">
+            <summary>
+            获取或者设置绘制折线的边框颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolylineOptions.FillColor">
+            <summary>
+            获取或者设置绘制折线的填充颜色
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolylineOptions.ZIndex">
+            <summary>
+            获取或者设置Overlay的绘制顺序，Overlay包括：圆、多边形、折线； 如果该值大， 则绘制到上层， 如果Ovlerlay该值相同，则按照绘制先后顺序， 默认为 0
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.Model.AMapPolylineOptions.Visible">
+            <summary>
+            获取或者设置折线是否绘制到地图上
+            </summary>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.CameraPosition">
+            <summary>
+            定义了地图视窗参数对象类
+            </summary>
+        </member>
+        <member name="F:Com.AMap.Api.Maps.Model.CameraPosition.target">
+            <summary>
+            获取地图中心点坐标
+            </summary>
+        </member>
+        <member name="F:Com.AMap.Api.Maps.Model.CameraPosition.zoom">
+            <summary>
+            获取比例尺
+            </summary>
+        </member>
+        <member name="F:Com.AMap.Api.Maps.Model.CameraPosition.tilt">
+            <summary>
+            获取地图倾角,范围为：范围为[0.f, 45.f] 
+            </summary>
+        </member>
+        <member name="F:Com.AMap.Api.Maps.Model.CameraPosition.bearing">
+            <summary>
+            获取地图旋转角度,以角度为单位，正北方向到地图方向逆时针旋转的角度，范围为：[0.f, 360.f] 
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.CameraPosition.#ctor(Com.AMap.Api.Maps.Model.LatLng,System.Single,System.Single,System.Single)">
+            <summary>
+            创建地图视窗参数类
+            </summary>
+            <param name="target">地图中心点</param>
+            <param name="zoom"> 比例尺</param>
+            <param name="tilt"> 地图倾角</param>
+            <param name="bearing"> 旋转角度</param>
+            <returns>返回地图参数视窗类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.CameraPosition.CreateCameraPosition(Com.AMap.Api.Maps.Model.LatLng)">
+            <summary>
+            创建地图视窗参数类
+            </summary>
+            <param name="target">地图中心点</param>
+            <returns>返回地图参数视窗类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.CameraPosition.CreateCameraPosition(Com.AMap.Api.Maps.Model.LatLng,System.Single)">
+            <summary>
+            创建地图视窗参数类
+            </summary>
+            <param name="target">地图中心点</param>
+            <param name="zoom"> 比例尺</param>
+            <remarks>调用次方法产生的对象倾角为 0， 地图上方为北向</remarks>
+            <returns>返回地图参数视窗类</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.CameraPosition.CreateCameraPosition(Com.AMap.Api.Maps.Model.LatLng,System.Single,System.Single)">
+            <summary>
+            创建地图视窗参数类
+            </summary>
+            <param name="target">地图中心点</param>
+            <param name="zoom"> 比例尺</param>
+            <param name="tilt"> 地图倾角</param>
+            <remarks>调用次方法产生的对象地图上方为北向</remarks>
+            <returns>返回地图参数视窗类</returns>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.Model.LatLng">
+            <summary>
+            定义了经纬度坐标对象，对象中存储经度和纬度值
+            </summary>
+        </member>
+        <member name="F:Com.AMap.Api.Maps.Model.LatLng.latitude">
+            <summary>
+            获取纬度值
+            </summary>
+        </member>
+        <member name="F:Com.AMap.Api.Maps.Model.LatLng.longitude">
+            <summary>
+            获取经度值
+            </summary>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.LatLng.#ctor(System.Double,System.Double)">
+            <summary>
+            创建经纬度对象
+            </summary>
+            <param name="latitude">纬度值，地球的垂直方向</param>
+            <param name="longitude">经度值，地球的水平方向</param>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.LatLng.Equals(System.Object)">
+            <summary>
+            判断该经纬度是否和参数所指定的对象相同
+            </summary>
+             <param name="obj">比较对象</param>
+            <returns>返回是否相等的bool值</returns>
+        </member>
+        <member name="M:Com.AMap.Api.Maps.Model.LatLng.ToString">
+            <summary>
+            将经纬度对象转化为字符串
+            </summary>
+            <returns>返回值为经纬度字符串,格式样例为：lat/lng: 39.0 ,116.0 </returns>
+        </member>
+        <member name="T:Com.AMap.Api.Maps.UiSettings">
+            <summary>
+            定义了地图交互状态类
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.UiSettings.ZoomControlsEnabled">
+            <summary>
+            获取或者设置是否能够显示缩放控件
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.UiSettings.ScrollGesturesEnabled">
+            <summary>
+            获取或者设置是否能够移动地图
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.UiSettings.ZoomGesturesEnabled">
+            <summary>
+            获取或者设置是否能够缩放地图
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.UiSettings.TiltGesturesEnabled">
+            <summary>
+            获取或者设置是否能够倾斜地图
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.UiSettings.RotateGesturesEnabled">
+            <summary>
+            获取或者设置是否能够旋转地图
+            </summary>
+        </member>
+        <member name="P:Com.AMap.Api.Maps.UiSettings.AllGesturesEnabled">
+            <summary>
+            获取或者设置是否所有交互可以使用
+            </summary>
+        </member>
+    </members>
+</doc>
